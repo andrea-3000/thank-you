@@ -1,5 +1,18 @@
 <html>
 	<head>
+		<style type="text/css">
+			canvas {
+			    padding-left: 0;
+			    padding-right: 0;
+			    margin-left: auto;
+			    margin-right: auto;
+			    display: block;
+			}
+
+			body {
+			    background-color: rgb(255,252,25);
+			}
+		</style>
 		<script src="processing-1.4.1.js"></script>
 		<script type="text/processing" data-processing-target="mycanvas">
 			color yellow = color(255,252, 25);
@@ -69,7 +82,7 @@
 				PImage andy;
 
 				Andy() {
-					andy = loadImage("res/andy0000.PNG");
+					andy = loadImage("res/andy0000.png");
 				}
 
 				void showName() {
@@ -93,7 +106,7 @@
 				PImage thankPic;
 
 				ThankYou() {
-					thankPic = loadImage("res/thanks0000.PNG");
+					thankPic = loadImage("res/thanks0000.png");
 				}
 
 				void showThanks() {
@@ -111,7 +124,7 @@
 				PImage thankPic;
 
 				ThankYou() {
-					thankPic = loadImage("res/thanks0000.PNG");
+					thankPic = loadImage("res/thanks0000.png");
 				}
 
 				void showThanks() {
