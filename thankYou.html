@@ -1,0 +1,164 @@
+<html>
+	<head>
+		<script src="processing-1.4.1.js"></script>
+		<script type="text/processing" data-processing-target="mycanvas">
+			color yellow = color(255,252, 25);
+			var drawCount = 0;
+			
+			class Heart {
+				PImage heartPic;
+				var xHeart;
+				var yHeart;
+				var xSpeed;
+				var ySpeed;
+
+				Heart (s) {
+					heartPic = loadImage("res/heart0000.png");
+					resetHeart();
+					xSpeed = s;
+					ySpeed = 5;
+				}
+
+				void resetHeart() {
+					xHeart = 200;
+					yHeart = 250;
+				}
+
+				void animate() {
+					showHeart();
+					moveHeart();
+				}
+
+				void showHeart() {
+					image(heartPic, xHeart, yHeart);
+
+				}
+
+				void moveHeart() {
+					xHeart = xHeart-xSpeed;
+					yHeart = yHeart-ySpeed;
+				}
+			}
+
+			class HeartFactory {
+				var heartList = [];
+
+				HeartFactory() {
+					for (var i = -5; i < 5; i += 2) {
+						heartList.push(new Heart(i))
+					}
+				}
+
+				void animateList() {
+					for(var i = 0; i < heartList.length; i++) {
+						heartList[i].animate();
+					}
+					offScreen();
+				}
+
+				void offScreen() {
+					for (var i = 0; i < heartList.length; i ++) {
+						if(heartList[i].yHeart < 0) {
+							heartList[i].resetHeart();
+						}
+					}
+				}
+			}
+
+			class Andy {
+				PImage andy;
+
+				Andy() {
+					andy = loadImage("res/andy0000.png");
+				}
+
+				void showName() {
+					image(andy, 150, 400);
+				}
+			}
+
+			class Person {
+				PImage person;
+
+				Person() {
+					person = loadImage("res/andyArt0000.png");
+				}
+
+				void showPerson() {
+					image(person, 200, 300);
+				}
+			}
+
+			class ThankYou {
+				PImage thankPic;
+
+				ThankYou() {
+					thankPic = loadImage("res/thanks0000.png");
+				}
+
+				void showThanks() {
+					for (var i = 0; i < 10; i++){
+						if (drawCount % 15 == i) {
+							image(thankPic, 100, 10);
+						}
+					}
+				}
+			}
+			
+			
+
+			class ThankYou {
+				PImage thankPic;
+
+				ThankYou() {
+					thankPic = loadImage("res/thanks0000.png");
+				}
+
+				void showThanks() {
+					for (var i = 0; i < 10; i++){
+						if (drawCount % 15 == i) {
+							image(thankPic, 100, 10);
+						}
+					}
+				}
+			}
+			
+			void setup() {
+			  size(500,500);
+			  background(yellow);
+			  
+			  me = new Person();
+			  muchLove = new HeartFactory();
+			  //heart = new Heart(5);
+			  tnx = new ThankYou();
+			  name = new Andy();
+			  
+			  
+			  fill(255);
+			  //noLoop();
+			}
+			
+			void draw(){
+				background(yellow);
+
+				muchLove.animateList();
+
+				name.showName();		
+
+				tnx.showThanks();
+
+				me.showPerson();
+
+
+				if(drawCount == 1000) {
+					drawCount = 0;
+				} else {
+					drawCount ++;
+				}				
+			}
+		</script>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+	</body>
+</html>
